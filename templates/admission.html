@@ -1,0 +1,121 @@
+<!-- admission.html -->
+{% extends 'base.html' %}
+{% load form_filters %}
+
+{% block title %}Admission{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Admission Form</h2>
+    <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="student_name" class="form-label">{{ form.student_name.label }}</label>
+                {{ form.student_name|add_class:"form-control" }}
+                <div class="row mb-3"></div>
+                <div class="invalid-feedback">
+                    Please provide a valid student name.
+                </div>
+                <div class="row mb-3"></div>
+            </div>
+            <div class="col-md-6">
+                <label for="birth_date" class="form-label">{{ form.birth_date.label }}</label>
+                {{ form.birth_date|add_class:"form-control" }}
+                <div class="row mb-3"></div>
+                <div class="invalid-feedback">
+                    Please provide a valid birth date.
+                </div>
+                <div class="row mb-3"></div>
+            </div>
+        </div>
+        <div class="row mb-3"></div> <!-- Add one-line gap -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="father_name" class="form-label">{{ form.father_name.label }}</label>
+                {{ form.father_name|add_class:"form-control" }}
+                <div class="invalid-feedback">
+                    Please provide a valid father name.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="guardian_name" class="form-label">{{ form.guardian_name.label }}</label>
+                {{ form.guardian_name|add_class:"form-control" }}
+                <div class="invalid-feedback">
+                    Please provide a valid guardian name.
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3"></div> <!-- Add one-line gap -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="previous_school" class="form-label">{{ form.previous_school.label }}</label>
+                {{ form.previous_school|add_class:"form-control" }}
+                <div class="invalid-feedback">
+                    Please provide a valid previous school name.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="contact_info" class="form-label">{{ form.contact_info.label }}</label>
+                {{ form.contact_info|add_class:"form-control" }}
+                <div class="invalid-feedback">
+                    Please provide valid contact information.
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3"></div> <!-- Add one-line gap -->
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label for="address" class="form-label">{{ form.address.label }}</label>
+                {{ form.address|add_class:"form-control" }}
+                <div class="invalid-feedback">
+                    Please provide a valid address.
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3"></div> <!-- Add one-line gap -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="education_level" class="form-label">{{ form.education_level.label }}</label>
+                {{ form.education_level|add_class:"form-control" }}
+                <div class="invalid-feedback">
+                    Please provide a valid education level.
+                </div>
+            </div>
+            <div class="col-md-6 form-check">
+                {{ form.agreement|add_class:"form-check-input" }}
+                <label class="form-check-label" for="agreement">{{ form.agreement.label }}</label>
+                <div class="invalid-feedback">
+                    You must agree before submitting.
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3"></div> <!-- Add one-line gap -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<!-- Add Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Add Bootstrap JS (optional) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Bootstrap custom validation
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
+{% endblock %}
